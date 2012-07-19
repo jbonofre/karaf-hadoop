@@ -1,0 +1,6 @@
+Karaf Hadoop
+------------
+
+Karaf Hadoop is an Apache Hadoop distribution ready to be deployed into an Apache Karaf instance.
+
+It leverages the OSGi mechanisms and Karaf features.
