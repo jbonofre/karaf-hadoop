@@ -1,0 +1,4 @@
+HDFS
+----
+- DataNode:
+ * avoid System.exit(-1) when RackID configuration.
