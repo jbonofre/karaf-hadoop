@@ -8,3 +8,8 @@ HTTP
 ----
 - HttpServer:
  * OSGi compliant by updating parameters at web application creating (war extraction, direct buffers, ...)
+
+Metrics2
+---------
+- MBeans:
+ * Change the MBeans registration: the MBeans belong to org.apache.hadoop to be consistent with other Karaf MBeans
