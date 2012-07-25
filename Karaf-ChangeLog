@@ -2,3 +2,9 @@ HDFS
 ----
 - DataNode:
  * avoid System.exit(-1) when RackID configuration.
+ * clean shutdown by correctly unregistering the MBeans
+
+HTTP
+----
+- HttpServer:
+ * OSGi compliant by updating parameters at web application creating (war extraction, direct buffers, ...)
