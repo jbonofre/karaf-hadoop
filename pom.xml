@@ -32,7 +32,6 @@
     <properties>
         <commons-cli.version>1.2</commons-cli.version>
         <commons-codec.version>1.6</commons-codec.version>
-        <commons-configuration.version>1.8</commons-configuration.version>
         <commons-lang.bundle.version>2.4_5</commons-lang.bundle.version>
         <geronimo-el.spec.version>1.0.3</geronimo-el.spec.version>
         <geronimo-jsp.spec.version>1.0.1</geronimo-jsp.spec.version>
