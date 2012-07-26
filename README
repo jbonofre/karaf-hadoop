@@ -4,3 +4,47 @@ Karaf Hadoop
 Karaf Hadoop is an Apache Hadoop distribution ready to be deployed into an Apache Karaf instance.
 
 It leverages the OSGi mechanisms and Karaf features.
+
+    Installation
+    ------------
+You can install directly the hadoop feature:
+
+karaf@root> feature:add-url mvn:org.apache.karaf.hadoop/apache-hadoop/1.0.3-SNAPSHOT/xml/features
+karaf@root> feature:install hadoop
+
+    Configuration
+    -------------
+The hadoop feature register a configuration with the PID org.apache.hadoop to configuration the hadoop node:
+
+karaf@root> config:list "(service.pid=org.apache.hadoop)"
+----------------------------------------------------------------
+Pid:            org.apache.hadoop
+BundleLocation: mvn:org.apache.karaf.hadoop/org.apache.karaf.hadoop.core/1.0.3-SNAPSHOT
+Properties:
+   dfs.replication = 1
+   org.apache.karaf.features.configKey = org.apache.hadoop
+   mapred.job.tracker = localhost:9001
+   dfs.http.address = localhost:9002
+   fs.default.name = hdfs://localhost:9000
+   dfs.name.dir = /home/jbonofre/apache-karaf-2.2.8/data/hadoop/dfs/name
+   dfs.data.dir = /home/jbonofre/apache-karaf-2.2.8/data/hadoop/dfs/data
+   service.pid = org.apache.hadoop
+   dfs.name.edits.dir = /home/jbonofre/apache-karaf-2.2.8/data/hadoop/dfs/name
+
+    Shell Commands
+    --------------
+hadoop:archive
+hadoop:balancer
+hadoop:dfs
+hadoop:dfsadmin
+hadoop:distcp
+hadoop:fsck
+hadoop:job
+hadoop:mradmin
+hadoop:namenode-format
+hadoop:pipes
+hadoop:queue
+
+    MBeans
+    ------
+The hadoop feature also register a set of MBeans (with the org.apache.hadoop domain).
