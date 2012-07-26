@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0">
+
+    <bean id="nameNodeFactory" class="org.apache.hadoop.karaf.hdfs.NameNodeFactory" destroy-method="delete">
+        <property name="bundleContext" ref="blueprintBundleContext"/>
+    </bean>
+
+    <bean id="dataNodeFactory" class="org.apache.hadoop.karaf.hdfs.DataNodeFactory" destroy-method="delete">
+        <property name="bundleContext" ref="blueprintBundleContext"/>
+    </bean>
+
+    <bean id="secondaryNameNodeFactory" class="org.apache.hadoop.karaf.hdfs.SecondaryNameNodeFactory" destroy-method="delete">
+        <property name="bundleContext" ref="blueprintBundleContext"/>
+    </bean>
+
+    <bean id="jobTrackerFactory" class="org.apache.hadoop.karaf.mapred.JobTrackerFactory" destroy-method="delete">
+        <property name="bundleContext" ref="blueprintBundleContext"/>
+    </bean>
+
+    <bean id="taskTrackerFactory" class="org.apache.hadoop.karaf.mapred.TaskTrackerFactory" destroy-method="delete">
+        <property name="bundleContext" ref="blueprintBundleContext"/>
+    </bean>
+
+    <bean id="hadoopFactory" class="org.apache.hadoop.karaf.HadoopFactory" destroy-method="destroy">
+        <property name="nameNodeFactory" ref="nameNodeFactory"/>
+        <property name="dataNodeFactory" ref="dataNodeFactory"/>
+        <property name="secondaryNameNodeFactory" ref="secondaryNameNodeFactory"/>
+        <property name="jobTrackerFactory" ref="jobTrackerFactory"/>
+        <property name="taskTrackerFactory" ref="taskTrackerFactory"/>
+    </bean>
+
+    <service ref="hadoopFactory" interface="org.osgi.service.cm.ManagedService">
+        <service-properties>
+            <entry key="service.pid" value="org.apache.hadoop"/>
+        </service-properties>
+    </service>
+
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="service.pid" value="org.apache.hadoop"/>
+            <entry key="url.handler.protocol" value="hdfs"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.hdfs.HdfsUrlHandler"/>
+    </service>
+
+</blueprint>
