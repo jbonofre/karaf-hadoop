@@ -32,6 +32,7 @@
     <properties>
         <commons-cli.version>1.2</commons-cli.version>
         <commons-codec.version>1.6</commons-codec.version>
+        <commons-configuration.version>1.8</commons-configuration.version>
         <commons-lang.bundle.version>2.4_5</commons-lang.bundle.version>
         <geronimo-el.spec.version>1.0.3</geronimo-el.spec.version>
         <geronimo-jsp.spec.version>1.0.1</geronimo-jsp.spec.version>
@@ -61,14 +62,39 @@
                 <version>${jersey.version}</version>
             </dependency>
             <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+                <version>${commons-configuration.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.bundle.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-core</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-tools</artifactId>
                 <version>${hadoop.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.karaf.shell</groupId>
                 <artifactId>org.apache.karaf.shell.commands</artifactId>
                 <version>${karaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-util</artifactId>
+                <version>${jetty.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
