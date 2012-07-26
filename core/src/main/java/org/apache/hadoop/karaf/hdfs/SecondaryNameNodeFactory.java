@@ -31,7 +31,7 @@ public class SecondaryNameNodeFactory extends Factory<SecondaryNameNode> {
             Object value = properties.get(key);
             conf.set(key.toString(), value.toString());
         }
-        SecondaryNameNode secondaryNameNode = new SecondaryNameNode();
+        SecondaryNameNode secondaryNameNode = new SecondaryNameNode(conf);
         new Daemon(secondaryNameNode).start();
         return secondaryNameNode;
     }

@@ -45,4 +45,123 @@
         <bean class="org.apache.hadoop.karaf.hdfs.HdfsUrlHandler"/>
     </service>
 
+    <!-- shell commands -->
+
+    <!-- hadoop:namenode-format -->
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
+        <command name="hadoop/namenode-format">
+            <action class="org.apache.hadoop.karaf.commands.NameNodeFormat"/>
+        </command>
+    </command-bundle>
+
+    <!-- hadoop:dfs -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="dfs"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.fs.FsShell"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:dfs-admin -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="dfsadmin"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.hdfs.tools.DFSAdmin"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:mradmin -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="mradmin"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.mapred.tools.MRAdmin"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:fsck -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="fsck"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.hdfs.tools.DFSck"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:balancer -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="balancer"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.hdfs.server.balancer.Balancer"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:job -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="job"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.mapred.JobClient"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:queue -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="queue"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.mapred.JobQueueClient"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:pipes -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="pipes"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.mapred.pipes.Submitter"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:distcp -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="distcp"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.tools.DistCp"/>
+        </bean>
+    </service>
+
+    <!-- hadoop:archive -->
+    <service auto-export="interfaces">
+        <service-properties>
+            <entry key="osgi.command.function" value="archive"/>
+            <entry key="osgi.command.scope" value="hadoop"/>
+        </service-properties>
+        <bean class="org.apache.hadoop.karaf.commands.HadoopCommand">
+            <property name="tool" value="org.apache.hadoop.tools.HadoopArchives"/>
+        </bean>
+    </service>
+
 </blueprint>

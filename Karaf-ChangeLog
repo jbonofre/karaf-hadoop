@@ -13,3 +13,23 @@ Metrics2
 ---------
 - MBeans:
  * Change the MBeans registration: the MBeans belong to org.apache.hadoop to be consistent with other Karaf MBeans
+
+Factories
+---------
+Add a set of factories (data node, name node, secondary name node) to be able to create the instances and register
+as OSGi services.
+
+Shell Commands
+--------------
+A set of commands are presents to be used directly in the Karaf shell console:
+- hadoop:namenode-format
+- hadoop:dfs
+- hadoop:dfs-admin
+- hadoop:mradmin
+- hadoop:fsck
+- hadoop:balancer
+- hadoop:job
+- hadoop:queue
+- hadoop:pipes
+- hadoop:distcp
+- hadoop:archive

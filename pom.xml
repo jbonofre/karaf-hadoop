@@ -30,16 +30,27 @@
     <packaging>pom</packaging>
 
     <properties>
+        <commons-cli.version>1.2</commons-cli.version>
+        <commons-codec.version>1.6</commons-codec.version>
+        <commons-configuration.version>1.8</commons-configuration.version>
+        <commons-lang.bundle.version>2.4_5</commons-lang.bundle.version>
+        <geronimo-el.spec.version>1.0.3</geronimo-el.spec.version>
+        <geronimo-jsp.spec.version>1.0.1</geronimo-jsp.spec.version>
+        <geronimo-servlet.spec.version>1.2</geronimo-servlet.spec.version>
         <hadoop.version>1.0.3</hadoop.version>
+        <jackson.version>1.9.5</jackson.version>
+        <jasper.bundle.version>6.0.35_1</jasper.bundle.version>
+        <jasper-el.version>6.0.20</jasper-el.version>
         <jersey.version>1.10</jersey.version>
+        <jetty.version>6.1.26</jetty.version>
+        <jsch.bundle.version>0.1.44_2</jsch.bundle.version>
+        <karaf.version>2.2.8</karaf.version>
         <osgi.version>4.2.0</osgi.version>
         <slf4j.version>1.6.4</slf4j.version>
     </properties>
 
     <modules>
         <module>core</module>
-        <module>commands</module>
-        <!-- <module>management</module> -->
         <module>assembly</module>
     </modules>
 
@@ -54,6 +65,11 @@
                 <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-core</artifactId>
                 <version>${hadoop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.shell</groupId>
+                <artifactId>org.apache.karaf.shell.commands</artifactId>
+                <version>${karaf.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
