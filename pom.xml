@@ -114,6 +114,16 @@
         </dependencies>
     </dependencyManagement>
 
+        <distributionManagement>
+           <repository>
+               <uniqueVersion>false</uniqueVersion>
+               <id>nanthrax</id>
+               <name>Nanthrax Maven Repository</name>
+               <url>ftp://maven.nanthrax.net/var/www/maven</url>
+               <layout>default</layout>
+           </repository>
+        </distributionManagement>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -125,6 +135,13 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+                <extensions>
+                  <extension>
+                      <groupId>org.apache.maven.wagon</groupId>
+                      <artifactId>wagon-ftp</artifactId>
+                      <version>1.0-beta-7</version>
+                  </extension>
+                </extensions>
     </build>
 
 </project>
