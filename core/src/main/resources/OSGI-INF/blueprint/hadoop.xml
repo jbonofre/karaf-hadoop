@@ -37,12 +37,16 @@
         </service-properties>
     </service>
 
-    <service auto-export="interfaces">
+    <reference id="configurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin"/>
+
+    <bean id="hdfsUrlHandler" class="org.apache.hadoop.karaf.hdfs.HdfsUrlHandler">
+        <property name="configurationAdmin" ref="configurationAdmin"/>
+    </bean>
+
+    <service ref="hdfsUrlHandler" auto-export="interfaces">
         <service-properties>
-            <entry key="service.pid" value="org.apache.hadoop"/>
             <entry key="url.handler.protocol" value="hdfs"/>
         </service-properties>
-        <bean class="org.apache.hadoop.karaf.hdfs.HdfsUrlHandler"/>
     </service>
 
     <!-- shell commands -->

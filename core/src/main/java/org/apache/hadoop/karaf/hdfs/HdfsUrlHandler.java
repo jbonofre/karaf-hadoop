@@ -16,8 +16,8 @@ package org.apache.hadoop.karaf.hdfs;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
 import org.osgi.service.url.AbstractURLStreamHandlerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,18 +31,29 @@ import java.net.URLConnection;
 import java.util.Dictionary;
 import java.util.Enumeration;
 
-public class HdfsUrlHandler extends AbstractURLStreamHandlerService implements ManagedService {
+public class HdfsUrlHandler extends AbstractURLStreamHandlerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HdfsUrlHandler.class);
 
     private static final String SYNTAX = "hdfs:[path]";
 
-    private Configuration conf;
+    private ConfigurationAdmin configurationAdmin;
 
     public HdfsUrlHandler() { }
 
-    @Override
-    public void updated(Dictionary properties) throws ConfigurationException {
+    public Configuration getConfiguration() throws IOException {
+        org.osgi.service.cm.Configuration configuration = null;
+        Dictionary properties = null;
+
+        configuration = configurationAdmin.getConfiguration("org.apache.hadoop");
+        if (configuration != null) {
+            properties = configuration.getProperties();
+        }
+
+        if (properties == null) {
+            throw new IllegalStateException("org.apache.hadoop dictionary is null");
+        }
+
         ClassLoader tccl = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
@@ -54,7 +65,7 @@ public class HdfsUrlHandler extends AbstractURLStreamHandlerService implements M
                     conf.set(key.toString(), value.toString());
                 }
             }
-            this.conf = conf;
+            return conf;
         } finally {
             Thread.currentThread().setContextClassLoader(tccl);
         }
@@ -85,7 +96,7 @@ public class HdfsUrlHandler extends AbstractURLStreamHandlerService implements M
             ClassLoader tccl = Thread.currentThread().getContextClassLoader();
             try {
                 Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-                FileSystem fs = FileSystem.get(url.toURI(), conf);
+                FileSystem fs = FileSystem.get(url.toURI(), getConfiguration());
                 is = fs.open(new Path(url.getPath()));
             } catch (URISyntaxException e) {
                 throw new IOException(e.toString());
@@ -101,6 +112,14 @@ public class HdfsUrlHandler extends AbstractURLStreamHandlerService implements M
             }
             return is;
         }
+    }
+
+    public ConfigurationAdmin getConfigurationAdmin() {
+        return configurationAdmin;
+    }
+
+    public void setConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
+        this.configurationAdmin = configurationAdmin;
     }
 
 }
