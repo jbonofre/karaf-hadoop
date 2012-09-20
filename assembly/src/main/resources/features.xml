@@ -2,7 +2,7 @@
 <features name="hadoop-${project.version}"
           xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 
-    <feature name="hadoop" version="${project.version}" resolver="(obr)">
+    <feature name="hadoop" version="${hadoop.version}" resolver="(obr)">
         <config name="org.apache.hadoop">
             #
             # Licensed to the Apache Software Foundation (ASF) under one
@@ -52,6 +52,15 @@
         <bundle dependency='true'>mvn:org.codehaus.jackson/jackson-core-asl/${jackson.version}</bundle>
         <bundle dependency='true'>mvn:org.codehaus.jackson/jackson-mapper-asl/${jackson.version}</bundle>
         <bundle>mvn:org.apache.karaf.hadoop/org.apache.karaf.hadoop.core/${project.version}</bundle>
+    </feature>
+
+    <feature name="pig" version="${pig.version}" description="">
+        <feature version="${hadoop.version}">hadoop</feature>
+        <bundle dependency="true">mvn:com.google.guava/guava/${guava.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.automaton/${automaton.bundle.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.antlr-runtime/${antlr-runtime.bundle.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.hbase/${hbase.bundle.version}</bundle>
+        <bundle>mvn:org.apache.karaf.hadoop/org.apache.karaf.hadoop.pig/${pig.version}</bundle>
     </feature>
 
 </features>
