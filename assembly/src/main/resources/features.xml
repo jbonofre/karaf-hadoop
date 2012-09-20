@@ -30,8 +30,8 @@
             dfs.http.address=localhost\:9002
             dfs.data.dir=${karaf.data}/hadoop/dfs/data
             dfs.name.edits.dir=${karaf.data}/hadoop/dfs/name
-            #dataNode = true
-            #nameNode = true
+            dataNode = true
+            nameNode = true
         </config>
         <bundle dependency="true">mvn:commons-lang/commons-lang/${commons-lang.version}</bundle>
         <bundle dependency="true">mvn:commons-codec/commons-codec/${commons-codec.version}</bundle>
@@ -51,7 +51,7 @@
         <bundle dependency='true'>wrap:mvn:tomcat/commons-el/5.5.23$Import-Package=*;resolution:=optional&amp;Export-Package=org.apache.commons.el*;-noimport:=true&amp;overwrite=merge</bundle>
         <bundle dependency='true'>mvn:org.codehaus.jackson/jackson-core-asl/${jackson.version}</bundle>
         <bundle dependency='true'>mvn:org.codehaus.jackson/jackson-mapper-asl/${jackson.version}</bundle>
-        <bundle>mvn:org.apache.karaf.hadoop/org.apache.karaf.hadoop.core/${project.version}</bundle>
+        <bundle>mvn:org.apache.karaf.hadoop/org.apache.karaf.hadoop.core/${hadoop.version}</bundle>
     </feature>
 
     <feature name="pig" version="${pig.version}" description="">
