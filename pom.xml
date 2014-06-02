@@ -48,10 +48,10 @@
         <jersey.version>1.10</jersey.version>
         <jetty.version>6.1.26</jetty.version>
         <jsch.bundle.version>0.1.44_2</jsch.bundle.version>
-        <karaf.version>2.2.8</karaf.version>
-        <osgi.version>4.2.0</osgi.version>
+        <karaf.version>2.3.1</karaf.version>
+        <osgi.version>4.3.1</osgi.version>
         <pig.version>0.10.0</pig.version>
-        <slf4j.version>1.6.4</slf4j.version>
+        <slf4j.version>1.7.5</slf4j.version>
     </properties>
 
     <modules>
